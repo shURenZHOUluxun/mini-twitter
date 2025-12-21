@@ -3,7 +3,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1B3C53;
 }
 
 @theme inline {
@@ -29,6 +29,7 @@ body {
 
 html {
   font-size: 16px;
+  color: #1B3C53;
 }
 
 header {

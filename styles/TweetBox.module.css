@@ -1,8 +1,8 @@
 .tweetBox {
   display: flex;
   padding: 1em;
-  border-bottom: 1px solid #e6ecf0;
-  border-right: 1px solid #e6ecf0;
+  border-bottom: 1px solid #E3E3E3;
+  border-right: 1px solid #E3E3E3;
   width: fit-content;
   height: fit-content;
 }
@@ -10,7 +10,7 @@
 .profileIcon {
   font-size: 2em;
   border-radius: 50%;
-  margin-right: 12px;
+  margin-right: 0.6em;
   color: #234C6A;
 }
 
@@ -20,10 +20,14 @@
 
 .textarea {
   display: block;
-  border-bottom: 1px solid #e6ecf0;
+  border-bottom: 1px solid #E3E3E3;
   resize: none;
   font-size: 1.4em;
   width: 500px;
+}
+
+.textarea:focus {
+  outline: none;
 }
 
 .clickableArea {
@@ -54,6 +58,12 @@
   padding: 0.2em;
   font-size: 1.5em;
   cursor: pointer;
-  border: #1da1f2  solid 1px;
   border-radius: 50%;
+}
+
+.icon {
+    color: #1da1f2;
+}
+.actionItem:hover{
+  background-color: #a9d5f5;
 }
