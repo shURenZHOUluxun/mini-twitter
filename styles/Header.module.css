@@ -1,7 +1,11 @@
+.header {
+    width: fit-content;
+}
+
 .nav {
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: space-between; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: right;
     width: clamp(72px, 20vw, 280px);
     box-sizing: border-box;
     padding: 1rem 2rem;
@@ -13,6 +17,7 @@
     /* width: 20vw; */
     height: 100vh;
     container: sidebar / inline-size;
+    
 }
 
 
@@ -43,14 +48,6 @@
 }
 
 @container sidebar (max-width: 140px) {
-
-    .navList li {    
-        display: flex;
-        /* align-items: center; */
-        justify-content: right;
-        height: 1.5em;
-    }   
-
     .navItem {
         display: none;
     }

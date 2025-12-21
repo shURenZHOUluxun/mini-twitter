@@ -2,13 +2,9 @@ import styles from '../../styles/Header.module.css';
 import { FaHome, FaSearch} from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { FaXTwitter } from "react-icons/fa6";
-export default function Header({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Header() {
   return (
-    <header>
+    <header className={styles.header}>
         <nav className={styles.nav}>
             <ul className={styles.navList}>
                 <li>
@@ -27,7 +23,6 @@ export default function Header({
                     <p className={styles.navItem}>Profile</p>
                 </li>
             </ul>
-            {children}
         </nav>
     </header>
   );    
