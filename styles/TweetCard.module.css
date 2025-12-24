@@ -23,3 +23,8 @@
   margin-bottom: 0.5em;
   width: 500px;
 }
+
+.name {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
