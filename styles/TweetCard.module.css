@@ -28,3 +28,15 @@
   font-weight: bold;
   margin-right: 0.5em;
 }
+
+.likeIcon {
+  color: #234C6A;
+  margin-top: 0.3em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.likeIcon:hover {
+  cursor: pointer;
+  color: #FF0000;
+}

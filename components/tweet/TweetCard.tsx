@@ -1,5 +1,6 @@
 import styles from "@/styles/TweetCard.module.css";
 import { CgProfile } from "react-icons/cg";
+import { AiOutlineLike } from "react-icons/ai";
 import Image from "next/image";
 export default function TweetCard() {
   return (
@@ -15,6 +16,7 @@ export default function TweetCard() {
             </div>
             <p className={styles.tweetText}>This is a sample tweet content to demonstrate the TweetCard component.</p>
             <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} />
+            <AiOutlineLike className={styles.likeIcon} title='Like Icon' />
         </div>
     </section>
   );
