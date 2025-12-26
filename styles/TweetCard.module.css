@@ -38,5 +38,23 @@
 
 .likeIcon:hover {
   cursor: pointer;
-  color: #FF0000;
+  color: #1da1f2;
+}
+
+.commentIcon {
+  color: #234C6A;
+  margin-top: 0.4em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.commentIcon:hover {
+  cursor: pointer;
+  color: #1da1f2;
+}
+
+.tweetActions {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
