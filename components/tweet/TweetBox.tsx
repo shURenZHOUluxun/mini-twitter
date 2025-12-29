@@ -29,7 +29,7 @@ export default function  TweetBox() {
               <MdEmojiEmotions className={styles.icon} title="emoji"/>
             </li>
           </ul>
-          <button className={styles.tweetButton}>Tweet</button>
+          <button className={styles.tweetButton}>Post</button>
         </div>
       </div>
     </div>
