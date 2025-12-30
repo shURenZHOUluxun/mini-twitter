@@ -35,20 +35,14 @@
     width: fit-content;
 }
 
-/* .navList li a {
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: fit-content;
-    height: 24px;
-} */
+.navList li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 #logo a svg{
     margin: 0;
-}
-.profileIcon{
-    /* font-size: 1em; */
-    /* color: aquamarine; */
 }
 
 .icons {
