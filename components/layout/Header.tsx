@@ -23,8 +23,10 @@ export default function Header() {
                     <p className={styles.navItem}>Explore</p>  
                 </li>
                 <li>
-                    <CgProfile className={`${styles.icons} ${styles.profileIcon}`} title='Profile'/>
-                    <p className={styles.navItem}>Profile</p>
+                    <Link href="/Profile">
+                        <CgProfile className={`${styles.icons} ${styles.profileIcon}`} title='Profile'/>
+                        <p className={styles.navItem}>Profile</p>
+                    </Link>
                 </li>
             </ul>
         </nav>
