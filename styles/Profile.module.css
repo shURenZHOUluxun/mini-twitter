@@ -3,13 +3,44 @@
     border-bottom: 1px solid #E3E3E3;
     border-right: 1px solid #E3E3E3;
     resize: none;
-    font-size: 1.4em;
     width: 500px;
+    background-color: #ffffff;
 }
+
+.imageWrapper {
+    width: 100%;
+    height: 200px;
+    background-color: #bbd6ea;
+    overflow: hidden;
+}   
 
 .imageBanner {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-bottom: 1px solid #E3E3E3;
+}   
+
+.profileIcon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-top: -75px;
+    margin-left: 20px;
+    object-fit: cover;
+    background-color: white;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.username {
+    color: gray;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }   
