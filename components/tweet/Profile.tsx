@@ -17,9 +17,14 @@ export default function Profile() {
               height={100} 
               className={styles.imageBanner} />
         </div>
-        <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
-        <h1 className={styles.name}>User Name</h1>
-        <p className={styles.username}>@username</p>
+        
+        <div className={styles.spacer}>
+            <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
+            <h1 className={styles.name}>User Name</h1>
+            <button className={styles.editProfileButton}>Edit Profile</button>
+            <p className={styles.username}>@username</p>
+        </div>
+        
     </div>
     
   );
