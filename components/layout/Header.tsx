@@ -15,8 +15,10 @@ export default function Header() {
                     </Link>
                 </li>
                 <li>
-                    <FaHome className={styles.icons} title='Home'/>
-                    <p className={styles.navItem}>Home</p>
+                    <Link href="/">
+                        <FaHome className={styles.icons} title='Home'/>
+                        <p className={styles.navItem}>Home</p>
+                    </Link>
                 </li>
                 <li>
                     <FaSearch className={styles.icons} title='Explore'/>
