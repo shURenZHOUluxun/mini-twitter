@@ -63,3 +63,7 @@
     grid-template-columns: 2fr 1fr;
     grid-auto-rows: auto;
 }
+
+.bio {
+    margin: 1em 1em;
+}

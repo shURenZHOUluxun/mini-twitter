@@ -24,7 +24,7 @@ export default function Profile() {
             <button className={styles.editProfileButton}>Edit Profile</button>
             <p className={styles.username}>@username</p>
         </div>
-        
+        <p className={styles.bio}>This is the user bio.</p>
     </div>
     
   );
