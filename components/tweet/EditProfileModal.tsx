@@ -8,7 +8,7 @@ export default function EditProfileModal({
   onClose: () => void;
 }) {
   return (
-    <div className={styles.overlay} onClick={onClose}>
+    <div className={styles.overlay} onClick={onClose}>  {/* click outside to close modal */}
       <div
         className={styles.modal}
         onClick={(e) => e.stopPropagation()} // 阻止冒泡
@@ -27,7 +27,7 @@ export default function EditProfileModal({
 
         <div className={styles.actions}>
           <button onClick={onClose}>Cancel</button>
-          <button className={styles.save}>Save</button>
+          <button onClick={onClose} className={styles.save}>Save</button>
         </div>
       </div>
     </div>
