@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "@/styles/EditProfileModal.module.css";
+import { CgProfile } from "react-icons/cg";
 
 export default function EditProfileModal({
   onClose,
@@ -14,6 +15,8 @@ export default function EditProfileModal({
         onClick={(e) => e.stopPropagation()} // 阻止冒泡
       >
         <h2>Edit profile</h2>
+
+        <CgProfile className={styles.profileIcon} title='Profile Icon' />
 
         <label>
           Name
