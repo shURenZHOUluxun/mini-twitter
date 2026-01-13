@@ -2,37 +2,41 @@
 
 import styles from "@/styles/EditProfileModal.module.css";
 import { CgProfile } from "react-icons/cg";
+import { useState } from "react";
 
 export default function EditProfileModal({
   onClose,
 }: {
   onClose: () => void;
 }) {
-  return (
-    <div className={styles.overlay} onClick={onClose}>  {/* click outside to close modal */}
-      <div
-        className={styles.modal}
-        onClick={(e) => e.stopPropagation()} // 阻止冒泡
-      >
-        <h2>Edit profile</h2>
+    const [bio, setBio] = useState('');
+    const [name, setName] = useState('');
 
-        <CgProfile className={styles.profileIcon} title='Profile Icon' />
+    return (
+        <div className={styles.overlay} onClick={onClose}>  {/* click outside to close modal */}
+        <div
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()} // 阻止冒泡
+        >
+            <h2>Edit profile</h2>
 
-        <label>
-          Name
-          <input type="text" />
-        </label>
+            <CgProfile className={styles.profileIcon} title='Profile Icon' />
 
-        <label>
-          Bio
-          <textarea rows={3} />
-        </label>
+            <label>
+            Name
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            </label>
 
-        <div className={styles.actions}>
-          <button onClick={onClose}>Cancel</button>
-          <button onClick={onClose} className={styles.save}>Save</button>
+            <label>
+            Bio
+            <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} />
+            </label>
+
+            <div className={styles.actions}>
+            <button onClick={onClose}>Cancel</button>
+            <button onClick={onClose} className={styles.save}>Save</button>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
