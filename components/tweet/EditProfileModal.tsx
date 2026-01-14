@@ -20,6 +20,7 @@ export default function EditProfileModal({
         >
             <h2>Edit profile</h2>
 
+            <input type="file" accept="image/*" className={styles.fileInput} />
             <CgProfile className={styles.profileIcon} title='Profile Icon' />
 
             <label>
