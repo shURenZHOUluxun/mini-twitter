@@ -32,3 +32,7 @@
   border-radius: 999px;
   padding: 0.4rem 1rem;
 }
+
+.fileInput {
+  /* display: none; */
+}
