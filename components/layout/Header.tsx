@@ -11,6 +11,7 @@ export default function Header() {
             <ul className={styles.navList}>
                 <li id={styles.logo}>
                     <Link href="/">
+                    {/* add input  */}
                         <FaXTwitter className={styles.icons} title='Logo'/> 
                     </Link>
                 </li>
