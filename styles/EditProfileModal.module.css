@@ -36,3 +36,11 @@
 .fileInput {
   /* display: none; */
 }
+
+.profileIcon {
+    cursor: pointer;
+  font-size: 5em;
+  border-radius: 50%;
+  color: #234C6A;
+  display: block;
+}
