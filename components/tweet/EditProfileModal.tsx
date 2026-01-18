@@ -3,6 +3,7 @@
 import styles from "@/styles/EditProfileModal.module.css";
 import { CgProfile } from "react-icons/cg";
 import { useState } from "react";
+import { useRef } from "react";
 
 export default function EditProfileModal({
   onClose,
@@ -11,6 +12,7 @@ export default function EditProfileModal({
 }) {
     const [bio, setBio] = useState('');
     const [name, setName] = useState('');
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
         <div className={styles.overlay} onClick={onClose}>  {/* click outside to close modal */}
@@ -20,8 +22,13 @@ export default function EditProfileModal({
         >
             <h2>Edit profile</h2>
 
-            <input type="file" accept="image/*" className={styles.fileInput} />
-            <CgProfile className={styles.profileIcon} title='Profile Icon' />
+            <input type="file"
+                ref={fileInputRef}
+                accept="image/*" 
+                className={styles.fileInput} />
+            <CgProfile className={styles.profileIcon}
+                onClick={() => fileInputRef.current?.click()}
+                title='Profile Icon' />
 
             <label>
             Name
