@@ -30,14 +30,14 @@ export default function EditProfileModal({
                 onClick={() => fileInputRef.current?.click()}
                 title='Profile Icon' />
 
-            <label>
-            Name
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <label className={styles.label}>
+                <p>Name</p>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
 
-            <label>
-            Bio
-            <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} />
+            <label className={styles.label}>
+                <p>Bio</p>
+                <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} />
             </label>
 
             <div className={styles.actions}>

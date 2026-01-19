@@ -44,3 +44,8 @@
   color: #234C6A;
   display: block;
 }
+
+.label {
+    display: block;
+    margin-top: 1rem;
+}
