@@ -48,4 +48,6 @@
 .label {
     display: block;
     margin-top: 1rem;
+    border: #E3E3E3 1px solid;
+    padding: 0.2em;
 }
