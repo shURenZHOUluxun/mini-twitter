@@ -51,3 +51,10 @@
     border: #E3E3E3 1px solid;
     padding: 0.2em;
 }
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}

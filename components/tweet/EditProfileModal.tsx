@@ -20,7 +20,11 @@ export default function EditProfileModal({
             className={styles.modal}
             onClick={(e) => e.stopPropagation()} // 阻止冒泡
         >
-            <h2>Edit profile</h2>
+            <section className={styles.modalHeader}>
+                <h2>Edit profile</h2>
+                <button onClick={onClose} className={styles.save}>save</button>
+            </section>
+            
 
             <input type="file"
                 ref={fileInputRef}
@@ -41,8 +45,7 @@ export default function EditProfileModal({
             </label>
 
             <div className={styles.actions}>
-            <button onClick={onClose}>Cancel</button>
-            <button onClick={onClose} className={styles.save}>Save</button>
+            {/* <button onClick={onClose}>Cancel</button> */}
             </div>
         </div>
         </div>
