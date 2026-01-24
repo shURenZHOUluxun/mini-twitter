@@ -58,3 +58,11 @@
     align-items: center;
     margin-bottom: 1em;
 }
+
+.textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 1em;
+    outline: none;
+}

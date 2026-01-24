@@ -41,7 +41,9 @@ export default function EditProfileModal({
 
             <label className={styles.label}>
                 <p>Bio</p>
-                <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} />
+                <textarea 
+                    className={styles.textarea}
+                    rows={3} value={bio} onChange={(e) => setBio(e.target.value)} />
             </label>
 
             <div className={styles.actions}>
