@@ -36,7 +36,9 @@ export default function EditProfileModal({
 
             <label className={styles.label}>
                 <p>Name</p>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                <input 
+                    className={styles.textarea}
+                    type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
 
             <label className={styles.label}>
