@@ -21,7 +21,7 @@ export default function EditProfileModal({
             onClick={(e) => e.stopPropagation()} // 阻止冒泡
         >
             <section className={styles.modalHeader}>
-                <h2>Edit profile</h2>
+                <h2 className={styles.editHeader}>Edit profile</h2>
                 <button onClick={onClose} className={styles.save}>save</button>
             </section>
             
