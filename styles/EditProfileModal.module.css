@@ -66,3 +66,10 @@
     font-size: 1em;
     outline: none;
 }
+
+.editHeader {
+    margin: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+}
