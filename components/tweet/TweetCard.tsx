@@ -17,10 +17,14 @@ export default function TweetCard() {
             </div>
             <p className={styles.tweetText}>This is a sample tweet content to demonstrate the TweetCard component.</p>
             <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} />
-            <div className={styles.tweetActions}>
-              <AiOutlineLike className={styles.likeIcon} title='Like' />
-              <FaRegComment className={styles.commentIcon} title='Comment' />
-            </div>
+            <ul className={styles.tweetActions}>
+              <li className={styles.likeIcon}>
+                <AiOutlineLike title='Like' />
+              </li>
+              <li className={styles.commentIcon}>
+                <FaRegComment  title='Comment' />
+              </li>
+            </ul>
         </div>
     </section>
   );

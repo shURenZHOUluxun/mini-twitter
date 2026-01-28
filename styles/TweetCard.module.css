@@ -33,24 +33,31 @@
   color: #234C6A;
   margin-top: 0.3em;
   font-size: 1.5em;
+  padding: 0.4em;
+  padding-top: 0.3em;
+  border-radius: 50%;
   font-weight: bold;
 }
 
 .likeIcon:hover {
   cursor: pointer;
-  color: #1da1f2;
+  color: #cb4a60;
+  background-color: rgb(245, 205, 205);
 }
 
 .commentIcon {
   color: #234C6A;
   margin-top: 0.4em;
   font-size: 1.2em;
+  padding: 0.5em;
+  border-radius: 50%;
   font-weight: bold;
 }
 
 .commentIcon:hover {
   cursor: pointer;
   color: #1da1f2;
+  background-color: #addbf8;
 }
 
 .tweetActions {
