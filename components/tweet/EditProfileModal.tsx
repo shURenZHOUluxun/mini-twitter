@@ -6,12 +6,20 @@ import { useState } from "react";
 import { useRef } from "react";
 
 export default function EditProfileModal({
-  onClose,
+    initialName,
+    initialBio,
+    onNameChange,
+    onBioChange,
+    onClose,
 }: {
-  onClose: () => void;
+    initialName: string;
+    initialBio: string;
+    onNameChange: (newName: string) => void;
+    onBioChange: (newBio: string) => void;
+    onClose: () => void;
 }) {
-    const [bio, setBio] = useState('');
-    const [name, setName] = useState('');
+    const [bio, setBio] = useState(initialBio);
+    const [name, setName] = useState(initialName);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
@@ -22,7 +30,12 @@ export default function EditProfileModal({
         >
             <section className={styles.modalHeader}>
                 <h2 className={styles.editHeader}>Edit profile</h2>
-                <button onClick={onClose} className={styles.save}>save</button>
+                <button onClick={() => {
+                    // Here you would typically handle saving the profile changes
+                    onNameChange(name);
+                    onBioChange(bio);
+                    onClose();  // Close the modal after saving 
+                }} className={styles.save}>save</button>
             </section>
             
 

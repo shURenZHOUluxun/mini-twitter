@@ -7,6 +7,9 @@ import EditProfileModal from "./EditProfileModal";
 
 export default function Profile() {
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState('username');
+  const [name, setName] = useState('User Name');
+  const [bio, setBio] = useState('This is the user bio.');
 
   return (
     <div className={styles.profileContainer}>
@@ -24,17 +27,22 @@ export default function Profile() {
         
         <div className={styles.spacer}>
             <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
-            <h1 className={styles.name}>User Name</h1>
+            <h1 className={styles.name}>{name}</h1>
             <button 
                 onClick={() => setOpen(true)} 
                 className={styles.editProfileButton}
             >Edit Profile</button>
             {open && (
-                <EditProfileModal onClose={() => setOpen(false)} />
+                <EditProfileModal 
+                  initialName={name}
+                  initialBio={bio}
+                  onNameChange={(newName) => setName(newName)}
+                  onBioChange={(newBio) => setBio(newBio)}
+                  onClose={() => setOpen(false)} />
             )}
-            <p className={styles.username}>@username</p>
+            <p className={styles.username}>@{username}</p>
         </div>
-        <p className={styles.bio}>This is the user bio.</p>
+        <p className={styles.bio}>{bio}</p>
     </div>
     
   );
