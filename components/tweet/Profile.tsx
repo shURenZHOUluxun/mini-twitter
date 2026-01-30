@@ -10,6 +10,7 @@ export default function Profile() {
   const [username, setUsername] = useState('username');
   const [name, setName] = useState('User Name');
   const [bio, setBio] = useState('This is the user bio.');
+  const [avatarUrl, setAvatarUrl] = useState('');
 
   return (
     <div className={styles.profileContainer}>
@@ -26,7 +27,16 @@ export default function Profile() {
         </div>
         
         <div className={styles.spacer}>
-            <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
+              {avatarUrl ? (
+                <Image 
+                  src={avatarUrl} 
+                  alt="Profile Avatar"
+                  width={100} 
+                  height={100} 
+                  className={styles.avatarImage} />
+              ) :(
+                <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
+              )}
             <h1 className={styles.name}>{name}</h1>
             <button 
                 onClick={() => setOpen(true)} 
@@ -36,8 +46,10 @@ export default function Profile() {
                 <EditProfileModal 
                   initialName={name}
                   initialBio={bio}
+                  initialAvatarUrl={avatarUrl}
                   onNameChange={(newName) => setName(newName)}
                   onBioChange={(newBio) => setBio(newBio)}
+                  onAvatarUrlChange={(newUrl) => setAvatarUrl(newUrl)}
                   onClose={() => setOpen(false)} />
             )}
             <p className={styles.username}>@{username}</p>

@@ -8,18 +8,23 @@ import { useRef } from "react";
 export default function EditProfileModal({
     initialName,
     initialBio,
+    initialAvatarUrl,
     onNameChange,
     onBioChange,
+    onAvatarUrlChange,
     onClose,
 }: {
     initialName: string;
     initialBio: string;
+    initialAvatarUrl: string;
     onNameChange: (newName: string) => void;
     onBioChange: (newBio: string) => void;
+    onAvatarUrlChange: (newUrl: string) => void;
     onClose: () => void;
 }) {
     const [bio, setBio] = useState(initialBio);
     const [name, setName] = useState(initialName);
+    const [avatarUrl, setAvatarUrl] = useState(initialAvatarUrl);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
