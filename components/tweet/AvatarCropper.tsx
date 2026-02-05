@@ -54,6 +54,35 @@ export default function AvatarCropper({ imageSrc }: { imageSrc: string }) {
         <div>
             {/* UI for displaying the image and selecting crop area would go here */}             
             <button onClick={handleCrop}>Crop Avatar</button>
+            <div style={{ width: 360 }}>
+                <div style={{ position: "relative", width: 360, height: 360, background: "#111" }}>
+                    <Cropper
+                    image={src}
+                    crop={crop}
+                    zoom={zoom}
+                    aspect={1}                 // 头像：1:1
+                    cropShape="round"          // 圆形预览框（更像头像）
+                    showGrid={false}
+                    onCropChange={setCrop}
+                    onZoomChange={setZoom}
+                    onCropComplete={onCropComplete}
+                    />
+                </div>
+
+                <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 12 }}>
+                    <input
+                    type="range"
+                    min={1}
+                    max={3}
+                    step={0.01}
+                    value={zoom}
+                    onChange={(e) => setZoom(Number(e.target.value))}
+                    style={{ flex: 1 }}
+                    />
+                    <button onClick={onCancel}>Cancel</button>
+                    <button onClick={handleCrop}>Crop</button>
+                </div>
+            </div>
         </div>
     );
-}           
+} 
