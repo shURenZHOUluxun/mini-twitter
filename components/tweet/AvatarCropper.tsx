@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Cropper from "react-easy-crop";
+// import Cropper from "react-easy-crop";
 
 type Area = { x: number; y: number; width: number; height: number };
 
