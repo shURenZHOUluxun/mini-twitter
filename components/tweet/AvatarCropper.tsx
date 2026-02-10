@@ -89,8 +89,8 @@ export default function AvatarCropper({
           onChange={(e) => setZoom(Number(e.target.value))}
           style={{ flex: 1 }}
         />
-        <button onClick={onCancel}>Cancel</button>
-        <button onClick={handleCrop}>Crop</button>
+        {/* <button onClick={onCancel}>Cancel</button>
+        <button onClick={handleCrop}>Crop</button> */}
       </div>
     </div>
   );
