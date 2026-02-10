@@ -2,13 +2,13 @@
 
 import styles from "@/styles/EditProfileModal.module.css";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import AvatarCropper from "./AvatarCropper";
 
 export default function EditProfileModal({
     initialName,
     initialBio,
-    initialAvatarUrl,
+    initialAvatar,
     onNameChange,
     onBioChange,
     onAvatarUrlChange,
@@ -16,7 +16,7 @@ export default function EditProfileModal({
 }: {
     initialName: string;
     initialBio: string;
-    initialAvatarUrl: string;
+    initialAvatar: string;
     onNameChange: (newName: string) => void;
     onBioChange: (newBio: string) => void;
     onAvatarUrlChange: (newUrl: string) => void;
@@ -24,7 +24,8 @@ export default function EditProfileModal({
 }) {
     const [bio, setBio] = useState(initialBio);
     const [name, setName] = useState(initialName);
-    const [avatarUrl, setAvatarUrl] = useState(initialAvatarUrl);
+    const [avatar, setAvatar] = useState(initialAvatar);     // 最终头像（裁剪后）
+    const [rawSrc, setRawSrc] = useState<string | null>(null); // 原图（待裁剪）
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
@@ -39,6 +40,7 @@ export default function EditProfileModal({
                     // Here you would typically handle saving the profile changes
                     onNameChange(name);
                     onBioChange(bio);
+                    onAvatarUrlChange(avatar);
                     onClose();  // Close the modal after saving 
                 }} className={styles.save}>save</button>
             </section>
@@ -47,10 +49,28 @@ export default function EditProfileModal({
             <input type="file"
                 ref={fileInputRef}
                 accept="image/*" 
-                className={styles.fileInput} />
+                className={styles.fileInput}
+                onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (!f) return;
+                    const url = URL.createObjectURL(f);
+                    setRawSrc(url); // 打开裁剪器
+                }} />
             <CgProfile className={styles.profileIcon}
                 onClick={() => fileInputRef.current?.click()}
                 title='Profile Icon' />
+
+            {/* 裁剪弹层/区域 */}
+            {rawSrc && (
+                <AvatarCropper
+                src={rawSrc}
+                onCancel={() => setRawSrc(null)}
+                onCropped={(cropped) => {
+                    setAvatar(cropped);
+                    setRawSrc(null);
+                }}
+                />
+            )}
 
             <label className={styles.label}>
                 <p>Name</p>
