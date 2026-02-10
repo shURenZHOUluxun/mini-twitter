@@ -96,7 +96,7 @@ export default function EditProfileModal({
                                 alt="avatar"
                                 width={100} 
                                 height={100}
-                                className={styles.avatarImage}
+                                className={styles.profileIcon}
                                 unoptimized
                             />
                         ) : (

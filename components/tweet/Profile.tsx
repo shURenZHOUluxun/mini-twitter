@@ -16,7 +16,7 @@ export default function Profile() {
     <div className={styles.profileContainer}>
         <div className={styles.imageWrapper}>
           <Image 
-              src="/default-profile.png" 
+              src="/uoft_grass.webp" 
               alt={styles.imageBanner}
               onError={(e) => {
                 e.currentTarget.style.display = "none";
@@ -33,7 +33,7 @@ export default function Profile() {
                   alt="Profile Avatar"
                   width={100} 
                   height={100} 
-                  className={styles.avatarImage} />
+                  className={styles.profileIcon} />
               ) :(
                 <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
               )}
@@ -46,7 +46,7 @@ export default function Profile() {
                 <EditProfileModal 
                   initialName={name}
                   initialBio={bio}
-                  initialAvatarUrl={avatarUrl}
+                  initialAvatar={avatarUrl}
                   onNameChange={(newName) => setName(newName)}
                   onBioChange={(newBio) => setBio(newBio)}
                   onAvatarUrlChange={(newUrl) => setAvatarUrl(newUrl)}
