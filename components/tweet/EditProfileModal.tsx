@@ -7,6 +7,29 @@ import AvatarCropper from "./AvatarCropper";
 import Image from "next/image";
 
 type Mode = "edit" | "crop";
+type Area = { x: number; y: number; width: number; height: number };
+async function createImage(url: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+async function cropToDataUrl(imageSrc: string, crop: {x:number;y:number;width:number;height:number}, size=256) {
+  const image = await createImage(imageSrc);
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("no canvas ctx");
+
+  ctx.drawImage(image, crop.x, crop.y, crop.width, crop.height, 0, 0, size, size);
+  return canvas.toDataURL("image/jpeg", 0.92);
+}
+
 
 export default function EditProfileModal({
     initialName,
@@ -30,6 +53,7 @@ export default function EditProfileModal({
     const [name, setName] = useState(initialName);
     const [avatar, setAvatar] = useState(initialAvatar);     // 最终头像（裁剪后）
     const [rawSrc, setRawSrc] = useState<string | null>(null); // 原图（待裁剪）
+    const [area, setArea] = useState<Area | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
@@ -73,6 +97,7 @@ export default function EditProfileModal({
                                 width={100} 
                                 height={100}
                                 className={styles.avatarImage}
+                                unoptimized
                             />
                         ) : (
                             <CgProfile
@@ -104,36 +129,42 @@ export default function EditProfileModal({
                     <>
                         <AvatarCropper
                         src={rawSrc}
-                        onCancel={() => setRawSrc(null)}
-                        onCropped={(cropped) => {
-                            setAvatar(cropped);
-                            setRawSrc(null);
-                        }}
+                        onAreaChange={(a) => setArea(a)}
                         />
 
-                        <button
-                            onClick={() => {
-                                // Cancel：回到 modal 编辑界面
+                        <div className="actions">
+                            {/* Cancel：只负责回到编辑界面 */}
+                            <button
+                                type="button"
+                                onMouseDown={(e) => e.stopPropagation()}
+                                onClick={() => {
                                 URL.revokeObjectURL(rawSrc);
                                 setRawSrc(null);
+                                setArea(null);
                                 setMode("edit");
-
-                                // 可选：重置 input，否则同一张图再选不会触发 onChange
                                 if (fileInputRef.current) fileInputRef.current.value = "";
-                            }}
-                        >
-                        Cancel
-                        </button>
+                                }}
+                            >
+                                Cancel
+                            </button>
 
-                        <button
-                            onClick={() => {
-                                // 你裁剪完成后：setAvatar(croppedUrl)
-                                // 然后回到 edit
+                            {/* Crop：只负责生成裁剪结果并回到编辑界面 */}
+                            <button
+                                type="button"
+                                onMouseDown={(e) => e.stopPropagation()}
+                                onClick={async () => {
+                                if (!area) return;
+                                const cropped = await cropToDataUrl(rawSrc, area, 256);
+                                setAvatar(cropped);
+                                URL.revokeObjectURL(rawSrc);
+                                setRawSrc(null);
+                                setArea(null);
                                 setMode("edit");
-                            }}
-                        >
-                        Crop
-                        </button>
+                                }}
+                            >
+                                Crop
+                            </button>
+                        </div>
                     </>
                 )}
             </div>
