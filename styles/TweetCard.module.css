@@ -46,7 +46,7 @@
   font-weight: bold;
 }
 
-.likeIcon:hover {
+.likeContainer:hover .likeIcon {
   cursor: pointer;
   color: #cb4a60;
   background-color: rgb(245, 205, 205);
@@ -61,7 +61,7 @@
   font-weight: bold;
 }
 
-.commentIcon:hover {
+.commentContainer:hover .commentIcon {
   cursor: pointer;
   color: #1da1f2;
   background-color: #addbf8;
@@ -71,4 +71,35 @@
   display: flex;
   align-items: center;
   gap: 2em;
+}
+
+.likeCount {
+  font-size: 1.2em;
+  margin-top: 0.4em;
+}
+
+.commentCount {
+  font-size: 1.2em;
+  margin-top: 0.4em;
+}
+
+.likeContainer:hover .likeCount {
+  cursor: pointer;
+  color: #cb4a60;
+}
+
+.commentContainer:hover .commentCount {
+  cursor: pointer;
+  color: #1da1f2;
+}
+
+/* .likeContainer {
+  cursor: pointer;
+  color: #cb4a60;
+} */
+
+.tweetActions li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }

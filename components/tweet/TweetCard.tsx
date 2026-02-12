@@ -38,11 +38,17 @@ export default function TweetCard({ tweet }: { tweet: Tweet }) {
             )}
             {/* <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} /> */}
             <ul className={styles.tweetActions}>
-              <li className={styles.likeIcon}>
-                <AiOutlineLike title='Like' />
+              <li className={styles.likeContainer}>
+                <div className={styles.likeIcon}>
+                  <AiOutlineLike title='Like' />
+                </div>
+                <span className={styles.likeCount}>{tweet.stats.likeCount}</span>
               </li>
-              <li className={styles.commentIcon}>
-                <FaRegComment  title='Comment' />
+              <li className={styles.commentContainer}>
+                <div className={styles.commentIcon}>
+                  <FaRegComment title='Comment' />
+                </div>
+                <span className={styles.commentCount}>{tweet.stats.replyCount}</span>
               </li>
             </ul>
         </div>
