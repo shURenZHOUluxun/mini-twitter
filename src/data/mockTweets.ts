@@ -11,10 +11,15 @@ export const mockTweets: Tweet[] = [
     },
     content: {
       text: "My first tweet in my mini-twitter",
-      media: [],
+      media: [
+        {
+          type: "image",
+          url: "/uoft_grass.webp",
+        },
+      ],
     },
     createdAt: new Date().toISOString(),
-    stats: { replyCount: 0, retweetCount: 0, likeCount: 0 },
+    stats: { replyCount: 5, retweetCount: 0, likeCount: 6 },
     viewerState: { liked: false, retweeted: false },
   },
 ];

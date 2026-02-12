@@ -13,6 +13,13 @@
   color: #234C6A;
 }
 
+.tweetImage {
+  max-width: 500px;
+  border-radius: 16px;
+  margin-top: 0.5em;
+  object-fit: contain;
+}
+
 .tweetContent {
   display: flex;
   flex-direction: column;

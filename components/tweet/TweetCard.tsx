@@ -19,7 +19,24 @@ export default function TweetCard({ tweet }: { tweet: Tweet }) {
               <span className={styles.time}>{new Date(tweet.createdAt).toLocaleString()}</span>
             </div>
             <p className={styles.tweetText}>{tweet.content.text}</p>
-            <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} />
+
+            {!!tweet.content.media?.length && (
+              <div style={{ marginTop: 8 }}>
+                {tweet.content.media.map((m, i) =>
+                  m.type === "image" ? (
+                    <Image
+                      key={i}
+                      src={m.url}
+                      alt="media"
+                      width={400}
+                      height={400}
+                      className={styles.tweetImage}
+                    />
+                  ) : null
+                )}
+              </div>
+            )}
+            {/* <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} /> */}
             <ul className={styles.tweetActions}>
               <li className={styles.likeIcon}>
                 <AiOutlineLike title='Like' />
