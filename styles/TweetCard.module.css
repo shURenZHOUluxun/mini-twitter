@@ -85,7 +85,12 @@
 
 .likeContainer:hover .likeCount {
   cursor: pointer;
-  color: #cb4a60;
+  color: #f91880;
+}
+
+.liked .likeIcon,
+.liked .likeCount {
+  color: #f91880;
 }
 
 .commentContainer:hover .commentCount {
@@ -95,7 +100,7 @@
 
 /* .likeContainer {
   cursor: pointer;
-  color: #cb4a60;
+  color: #f91880;
 } */
 
 .tweetActions li {

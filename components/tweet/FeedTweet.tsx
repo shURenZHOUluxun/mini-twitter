@@ -6,11 +6,33 @@ import type { Tweet } from "@/src/types/tweet";
 
 export default function Feed() {
   const [tweets, setTweets] = useState<Tweet[]>(mockTweets);
+  
+
+  const toggleLike = (tweetId: string) => {
+    setTweets((prev) =>
+      prev.map((t) => {
+        if (t.id !== tweetId) return t;
+
+        const liked = !!t.viewerState?.liked;
+        const nextLiked = !liked;
+
+        return {
+          ...t,
+          viewerState: { ...(t.viewerState ?? {}), liked: nextLiked, retweeted: t.viewerState?.retweeted ?? false },
+          stats: {
+            ...t.stats,
+            likeCount: t.stats.likeCount + (nextLiked ? 1 : -1),
+          },
+        };
+      })
+    );
+  };
+
 
   return (
     <section>
       {tweets.map((t) => (
-        <TweetCard key={t.id} tweet={t} />
+        <TweetCard key={t.id} tweet={t} onToggleLike={() => toggleLike(t.id)} />
       ))}
     </section>
   );

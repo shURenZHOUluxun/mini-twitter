@@ -6,7 +6,15 @@ import Image from "next/image";
 
 import type { Tweet } from "@/src/types/tweet";
 
-export default function TweetCard({ tweet }: { tweet: Tweet }) {
+export default function TweetCard({ 
+  tweet,
+  onToggleLike,
+}: { 
+  tweet: Tweet,
+  onToggleLike: () => void,
+}) {
+  const liked = !!tweet.viewerState?.liked;
+
   return (
     <section className={styles.cardContainer}>
         <CgProfile className={styles.profileIcon} title='Profile Icon' />
@@ -38,7 +46,15 @@ export default function TweetCard({ tweet }: { tweet: Tweet }) {
             )}
             {/* <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} /> */}
             <ul className={styles.tweetActions}>
-              <li className={styles.likeContainer}>
+              <li 
+                className={`${styles.likeContainer} ${liked ? styles.liked : ""}`}
+                onClick={onToggleLike}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") onToggleLike();
+                }}                
+                role="button"                
+                tabIndex={0}
+              >
                 <div className={styles.likeIcon}>
                   <AiOutlineLike title='Like' />
                 </div>
