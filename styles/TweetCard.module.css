@@ -75,12 +75,12 @@
 
 .likeCount {
   font-size: 1.2em;
-  margin-top: 0.4em;
+  margin-top: 0.5em;
 }
 
 .commentCount {
   font-size: 1.2em;
-  margin-top: 0.4em;
+  margin-top: 0.5em;
 }
 
 .likeContainer:hover .likeCount {
@@ -101,5 +101,4 @@
 .tweetActions li {
   display: flex;
   align-items: center;
-  gap: 0.5em;
 }
