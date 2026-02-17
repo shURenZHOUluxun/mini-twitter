@@ -1,0 +1,29 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+.modal {
+  width: min(560px, 92vw);
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.header, .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  resize: none;
+}
