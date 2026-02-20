@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import styles from "@/styles/ReplyModal.module.css";
 
 export default function ReplyModal({
   tweetAuthor,
@@ -22,25 +23,25 @@ export default function ReplyModal({
 
   return (
     <div
-      className="overlay"
+      className={styles.overlay}
       onMouseDown={(e) => {
         // ✅ 只点到背景才关闭（避免拖动/点击内部误触）
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
-        className="modal"
+        className={styles.modal}
         onMouseDown={(e) => e.stopPropagation()}
         onClick={(e) => e.stopPropagation()}
       >
-        <header className="header">
+        <header className={styles.header}>
           <h3>Reply</h3>
           <button type="button" onClick={onClose}>✕</button>
         </header>
 
-        <div className="tweetPreview">
-          <div className="meta">{tweetAuthor}</div>
-          <div className="text">{tweetText}</div>
+        <div className={styles.tweetPreview}>
+          <div className={styles.meta}>{tweetAuthor}</div>
+          <div className={styles.text}>{tweetText}</div>
         </div>
 
         <textarea
@@ -51,7 +52,7 @@ export default function ReplyModal({
           rows={4}
         />
 
-        <footer className="actions">
+        <footer className={styles.actions}>
           <button type="button" onClick={onClose}>Cancel</button>
           <button
             type="button"

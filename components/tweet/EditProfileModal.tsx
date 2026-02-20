@@ -66,7 +66,6 @@ export default function EditProfileModal({
                     <section className={styles.modalHeader}>
                         <h2 className={styles.editHeader}>Edit profile</h2>
                         <button onClick={() => {
-                            // Here you would typically handle saving the profile changes
                             onNameChange(name);
                             onBioChange(bio);
                             onAvatarUrlChange(avatar);
