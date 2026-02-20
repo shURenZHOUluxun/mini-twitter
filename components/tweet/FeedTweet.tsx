@@ -28,11 +28,20 @@ export default function Feed() {
     );
   };
 
+  const onReply = (tweetId: string, replyText: string) => {
+    console.log("reply to", tweetId, replyText);
+  };
+
 
   return (
     <section>
       {tweets.map((t) => (
-        <TweetCard key={t.id} tweet={t} onToggleLike={() => toggleLike(t.id)} />
+        <TweetCard 
+          key={t.id} 
+          tweet={t} 
+          onToggleLike={() => toggleLike(t.id)} 
+          onReply={onReply} 
+        />
       ))}
     </section>
   );

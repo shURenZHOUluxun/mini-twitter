@@ -3,17 +3,22 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import Image from "next/image";
+import ReplyModal from "./ReplyModal";
+import { useState } from "react";
 
 import type { Tweet } from "@/src/types/tweet";
 
 export default function TweetCard({ 
   tweet,
   onToggleLike,
+  onReply,
 }: { 
   tweet: Tweet,
   onToggleLike: () => void,
+  onReply: (tweetId: string, text: string) => void
 }) {
   const liked = !!tweet.viewerState?.liked;
+  const [openReply, setOpenReply] = useState(false);
 
   return (
     <section className={styles.cardContainer}>
@@ -61,13 +66,22 @@ export default function TweetCard({
                 <span className={styles.likeCount}>{tweet.stats.likeCount}</span>
               </li>
               <li className={styles.commentContainer}>
-                <div className={styles.commentIcon}>
+                <div className={styles.commentIcon} 
+                  onClick={() => setOpenReply(true)} >
                   <FaRegComment title='Comment' />
                 </div>
                 <span className={styles.commentCount}>{tweet.stats.replyCount}</span>
               </li>
             </ul>
         </div>
+        {openReply && (
+          <ReplyModal
+            tweetAuthor={`@${tweet.author.username}`}
+            tweetText={tweet.content.text}
+            onClose={() => setOpenReply(false)}
+            onSubmit={(replyText) => onReply(tweet.id, replyText)}
+          />
+        )}
     </section>
   );
 }            
