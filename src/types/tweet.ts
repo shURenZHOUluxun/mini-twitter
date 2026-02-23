@@ -10,7 +10,7 @@ export type Tweet = {
 
   content: {
     text: string;
-    media?: { type: "image"; url: string }[]; // 先做 image 就够
+    media?: { type: "image"; url: string }[]; // 先做 image 
   };
 
   createdAt: string; // ISO string, e.g. new Date().toISOString()

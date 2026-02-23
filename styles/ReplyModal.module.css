@@ -1,9 +1,11 @@
 .overlay {
   position: fixed;
+  /* shorthand for top: 0; right: 0; bottom: 0; left: 0; */
   inset: 0;
   background: rgba(0,0,0,.45);
   display: grid;
-  place-items: center;
+  /* means align-items: center; justify-content: center; */
+  place-items: center; 
   z-index: 50;
 }
 
