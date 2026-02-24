@@ -9,7 +9,7 @@ export default function ReplyModal({
   onClose,
   onSubmit,
 }: {
-  tweetAuthor: string;     // "@fabe"
+  tweetAuthor: string;     // "@username"
   tweetText: string;       // 原 tweet 内容
   onClose: () => void;
   onSubmit: (replyText: string) => void;
