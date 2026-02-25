@@ -3,6 +3,7 @@ import type { Tweet } from "@/src/types/tweet";
 export const mockTweets: Tweet[] = [
   {
     id: "t1",
+    parentId: null,
     author: {
       id: "u1",
       username: "username",
