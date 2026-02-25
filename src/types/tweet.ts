@@ -1,6 +1,8 @@
 export type Tweet = {
   id: string;
 
+  parentId: string | null;
+
   author: {
     id: string;
     username: string;     // @username
