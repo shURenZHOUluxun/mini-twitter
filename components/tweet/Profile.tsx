@@ -27,16 +27,16 @@ export default function Profile() {
         </div>
         
         <div className={styles.spacer}>
-              {avatarUrl ? (
-                <Image 
-                  src={avatarUrl} 
-                  alt="Profile Avatar"
-                  width={100} 
-                  height={100} 
-                  className={styles.profileIcon} />
-              ) :(
-                <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
-              )}
+            {avatarUrl ? (
+              <Image 
+                src={avatarUrl} 
+                alt="Profile Avatar"
+                width={100} 
+                height={100} 
+                className={styles.profileIcon} />
+            ) :(
+              <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
+            )}
             <h1 className={styles.name}>{name}</h1>
             <button 
                 onClick={() => setOpen(true)} 

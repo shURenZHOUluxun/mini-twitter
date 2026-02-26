@@ -5,6 +5,7 @@ import { FaRegComment } from "react-icons/fa";
 import Image from "next/image";
 import ReplyModal from "./ReplyModal";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import type { Tweet } from "@/src/types/tweet";
 
@@ -12,16 +13,31 @@ export default function TweetCard({
   tweet,
   onToggleLike,
   onReply,
+  disableNavigation = false,
 }: { 
   tweet: Tweet,
   onToggleLike: () => void,
-  onReply: (tweetId: string, text: string) => void
+  onReply: (tweetId: string, text: string) => void,
+  disableNavigation?: boolean, // for future use when we have a separate tweet detail page
 }) {
   const liked = !!tweet.viewerState?.liked;
   const [openReply, setOpenReply] = useState(false);
+  const router = useRouter();
 
   return (
-    <section className={styles.cardContainer}>
+    <section className={styles.cardContainer}
+      role={!disableNavigation ? "button" : undefined}
+      tabIndex={!disableNavigation ? 0 : undefined}
+      onClick={() => {
+        if (disableNavigation) return;
+        router.push(`/Post/${tweet.id}`);
+      }}
+      onKeyDown={(e) => {
+        if (disableNavigation) return;
+        if (e.key === "Enter" || e.key === " ") router.push(`/Post/${tweet.id}`);
+      }}
+      style={{ cursor: disableNavigation ? "default" : "pointer" }}
+    >
         <CgProfile className={styles.profileIcon} title='Profile Icon' />
         
         <div className={styles.tweetContent}>
@@ -50,7 +66,9 @@ export default function TweetCard({
               </div>
             )}
             {/* <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} /> */}
-            <ul className={styles.tweetActions}>
+            <ul className={styles.tweetActions} onClick={(e) => e.stopPropagation()} // 阻止事件冒泡，避免触发父元素的 onClick 导航
+              onKeyDown={(e) => e.stopPropagation()} // 同上，阻止键盘事件冒泡
+            >
               <li 
                 className={`${styles.likeContainer} ${liked ? styles.liked : ""}`}
                 onClick={onToggleLike}
