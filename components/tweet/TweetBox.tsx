@@ -5,8 +5,20 @@ import { FaImage } from "react-icons/fa";
 import { MdEmojiEmotions } from "react-icons/md";
 import { HiGif } from "react-icons/hi2";
 import { useState } from "react";
-export default function  TweetBox() {
+export default function  TweetBox({ 
+  onSubmit,
+  parentId, 
+}: { 
+  onSubmit: (parentId: string | undefined, text: string) => void,
+  parentId?: string, // 如果是 reply 就传 parentId，发主贴则不传
+}) {
   const [text, setText] = useState('');
+  const handleSubmit = () => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    onSubmit(parentId, trimmed);
+    setText("");
+  };
   return (
     <div className={styles.tweetBox}>
       <CgProfile className={styles.profileIcon} title='Profile Icon' />
@@ -29,7 +41,11 @@ export default function  TweetBox() {
               <MdEmojiEmotions className={styles.icon} title="emoji"/>
             </li>
           </ul>
-          <button className={styles.tweetButton}>Post</button>
+          <button 
+            className={styles.tweetButton}
+            onClick={handleSubmit}
+            disabled={!text.trim()}
+          >Post</button>
         </div>
       </div>
     </div>

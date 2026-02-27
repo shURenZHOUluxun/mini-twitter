@@ -67,7 +67,27 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  const value = useMemo(() => ({ tweets, toggleLike, replyToTweet }), [tweets]);
+    const createTweet = (text: string, currentUser: User) => {
+        const newTweet: Tweet = {
+            id: crypto.randomUUID(),
+            parentId: null, // 主贴没有 parentId
+            author: {
+            id: currentUser.id,
+            username: currentUser.username,
+            displayName: currentUser.displayName,
+            avatarUrl: currentUser.avatarUrl,
+            },
+            content: { text },
+            createdAt: new Date().toISOString(),
+            stats: { replyCount: 0, retweetCount: 0, likeCount: 0 },
+            viewerState: { liked: false, retweeted: false },
+            // 注意：主贴没有 parentId
+        };
+
+        setTweets((prev) => [newTweet, ...prev]); // 放到最上面
+    };
+
+  const value = useMemo(() => ({ tweets, toggleLike, replyToTweet, createTweet }), [tweets]);
 
   return <TweetsContext.Provider value={value}>{children}</TweetsContext.Provider>;
 }
