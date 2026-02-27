@@ -4,6 +4,7 @@ import TweetCard from "@/components/tweet/TweetCard";
 import { useTweets } from "@/src/context/TweetsContext";
 import type { User } from "@/src/types/user";
 import type { Tweet } from "@/src/types/tweet";
+import InlineReply from "@/components/tweet/InlineReply";
 
 function buildAncestorChain(all: Tweet[], start: Tweet) {
   const chain: Tweet[] = [];
@@ -43,7 +44,7 @@ export default function PostPageClient({ id }: { id: string }) {
   <section>
 
     {/* 1渲染父链路ancestor*/}
-    {ancestors.map((tweet, i) => (
+    {ancestors.map((tweet) => (
       <TweetCard
         key={tweet.id}
         tweet={tweet}
@@ -59,12 +60,15 @@ export default function PostPageClient({ id }: { id: string }) {
     <TweetCard
       tweet={main}
       disableNavigation
-      showThreadLine={true}
+      showThreadLine={replies.length > 0}
       onToggleLike={() => toggleLike(main.id)}
       onReply={(parentId, text) =>
         replyToTweet(parentId, text, currentUser)
       }
     />
+
+    <InlineReply parentId={main.id} onSubmit={(parentId, text) =>
+        replyToTweet(parentId, text, currentUser)}></InlineReply>
 
     {/* 3replies */}
     {replies.map((tweet, i) => (
