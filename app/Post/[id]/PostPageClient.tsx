@@ -42,11 +42,12 @@ export default function PostPageClient({ id }: { id: string }) {
   return (
   <section>
 
-    {/* 1渲染父链路 */}
-    {ancestors.map((tweet) => (
+    {/* 1渲染父链路ancestor*/}
+    {ancestors.map((tweet, i) => (
       <TweetCard
         key={tweet.id}
         tweet={tweet}
+        showThreadLine={true}
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
           replyToTweet(parentId, text, currentUser)
@@ -58,6 +59,7 @@ export default function PostPageClient({ id }: { id: string }) {
     <TweetCard
       tweet={main}
       disableNavigation
+      showThreadLine={true}
       onToggleLike={() => toggleLike(main.id)}
       onReply={(parentId, text) =>
         replyToTweet(parentId, text, currentUser)
@@ -65,10 +67,11 @@ export default function PostPageClient({ id }: { id: string }) {
     />
 
     {/* 3replies */}
-    {replies.map((tweet) => (
+    {replies.map((tweet, i) => (
       <TweetCard
         key={tweet.id}
         tweet={tweet}
+        showThreadLine={i !== replies.length - 1} // don't show line for the last reply
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
           replyToTweet(parentId, text, currentUser)

@@ -14,11 +14,13 @@ export default function TweetCard({
   onToggleLike,
   onReply,
   disableNavigation = false,
+  showThreadLine = false, 
 }: { 
   tweet: Tweet,
   onToggleLike: () => void,
   onReply: (tweetId: string, text: string) => void,
   disableNavigation?: boolean, // for future use when we have a separate tweet detail page
+  showThreadLine?: boolean,
 }) {
   const liked = !!tweet.viewerState?.liked;
   const [openReply, setOpenReply] = useState(false);
@@ -38,7 +40,9 @@ export default function TweetCard({
       }}
       style={{ cursor: disableNavigation ? "default" : "pointer" }}
     >
-        <CgProfile className={styles.profileIcon} title='Profile Icon' />
+        <div className={`${styles.avatarWrapper} ${showThreadLine ? styles.withLine : ""}`}>
+          <CgProfile className={styles.profileIcon} title='Profile Icon' />
+        </div>
         
         <div className={styles.tweetContent}>
             <div className={styles.tweetHeader}>

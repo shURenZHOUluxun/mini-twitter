@@ -6,6 +6,29 @@
   width: fit-content;
   height: fit-content;
 }
+
+.avatarWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.avatarWrapper::after {
+  content: "";
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.2em;           
+  bottom: -1em;         
+  width: 2px;
+  background: #e1e8ed;
+}
+
+.withLine::after {
+  display: block;
+}
+
 .profileIcon {
   font-size: 2em;
   border-radius: 50%;
