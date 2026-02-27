@@ -3,6 +3,24 @@
 import TweetCard from "@/components/tweet/TweetCard";
 import { useTweets } from "@/src/context/TweetsContext";
 import type { User } from "@/src/types/user";
+import type { Tweet } from "@/src/types/tweet";
+
+function buildAncestorChain(all: Tweet[], start: Tweet) {
+  const chain: Tweet[] = [];
+  let cur: Tweet | undefined = start;
+
+  while (cur?.parentId) {
+    const parent = all.find((t) => t.id === cur!.parentId);
+    if (!parent) break;              // 数据缺失就停
+    chain.unshift(parent);           // 保持从祖先到近父的顺序
+    cur = parent;
+
+    // 防死循环（防止错误数据 parentId 循环引用）
+    if (chain.length > 50) break;
+  }
+
+  return chain;
+}
 
 export default function PostPageClient({ id }: { id: string }) {
   const { tweets, toggleLike, replyToTweet } = useTweets();
@@ -15,38 +33,48 @@ export default function PostPageClient({ id }: { id: string }) {
   };
 
   const main = tweets.find((t) => t.id === id);
+  if (!main) return <div>Tweet not found</div>;
+  const ancestors = buildAncestorChain(tweets, main);
   const replies = tweets
     .filter((t) => t.parentId === id)
     .sort((a, b) => +new Date(a.createdAt) - +new Date(b.createdAt));
 
-  if (!main) return <div>Tweet not found</div>;
-
   return (
-    <section>
-      {/* 主贴：禁用点击跳转（避免在 post page 再 push 自己） */}
-      <TweetCard
-        tweet={main}
-        disableNavigation
-        onToggleLike={() => toggleLike(main.id)}
-        onReply={(parentId, text) => replyToTweet(parentId, text, currentUser)}
-      />
+  <section>
 
-      <div style={{ marginTop: 16 }}>
-        <h3>Replies</h3>
-        {replies.length === 0 ? (
-          <p>No replies yet.</p>
-        ) : (
-          replies.map((r) => (
-            <TweetCard
-              key={r.id}
-              tweet={r}
-              disableNavigation
-              onToggleLike={() => toggleLike(r.id)}
-              onReply={(parentId, text) => replyToTweet(parentId, text, currentUser)}
-            />
-          ))
-        )}
-      </div>
-    </section>
+    {/* 1渲染父链路 */}
+    {ancestors.map((tweet) => (
+      <TweetCard
+        key={tweet.id}
+        tweet={tweet}
+        onToggleLike={() => toggleLike(tweet.id)}
+        onReply={(parentId, text) =>
+          replyToTweet(parentId, text, currentUser)
+        }
+      />
+    ))}
+
+    {/* 2当前主 tweet */}
+    <TweetCard
+      tweet={main}
+      disableNavigation
+      onToggleLike={() => toggleLike(main.id)}
+      onReply={(parentId, text) =>
+        replyToTweet(parentId, text, currentUser)
+      }
+    />
+
+    {/* 3replies */}
+    {replies.map((tweet) => (
+      <TweetCard
+        key={tweet.id}
+        tweet={tweet}
+        onToggleLike={() => toggleLike(tweet.id)}
+        onReply={(parentId, text) =>
+          replyToTweet(parentId, text, currentUser)
+        }
+      />
+    ))}
+  </section>
   );
 }
