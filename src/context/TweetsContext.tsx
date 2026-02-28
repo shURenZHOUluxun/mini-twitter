@@ -9,6 +9,7 @@ type TweetsCtx = {
   tweets: Tweet[];
   toggleLike: (tweetId: string) => void;
   replyToTweet: (parentId: string, replyText: string, currentUser: User) => void;
+  createTweet: (text: string, currentUser: User) => void;
 };
 
 const TweetsContext = createContext<TweetsCtx | null>(null);
