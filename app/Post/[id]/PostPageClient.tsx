@@ -48,7 +48,7 @@ export default function PostPageClient({ id }: { id: string }) {
       <TweetCard
         key={tweet.id}
         tweet={tweet}
-        showThreadLine={true}
+        showThreadLine={true} // must connect with all ancestors
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
           replyToTweet(parentId, text, currentUser)
@@ -60,7 +60,7 @@ export default function PostPageClient({ id }: { id: string }) {
     <TweetCard
       tweet={main}
       disableNavigation
-      showThreadLine={replies.length > 0}
+      showThreadLine={false} // 主贴上不显示连接线，只有父链路才显示
       onToggleLike={() => toggleLike(main.id)}
       onReply={(parentId, text) =>
         replyToTweet(parentId, text, currentUser)
@@ -71,11 +71,11 @@ export default function PostPageClient({ id }: { id: string }) {
         replyToTweet(parentId, text, currentUser)}></InlineReply>
 
     {/* 3replies */}
-    {replies.map((tweet, i) => (
+    {replies.map((tweet) => (
       <TweetCard
         key={tweet.id}
         tweet={tweet}
-        showThreadLine={i !== replies.length - 1} // don't show line for the last reply
+        showThreadLine={false} // replys don't connect with each other
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
           replyToTweet(parentId, text, currentUser)
