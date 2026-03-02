@@ -43,7 +43,7 @@ export default function PostPageClient({ id }: { id: string }) {
   return (
   <section>
 
-    {/* 1渲染父链路ancestor*/}
+    {/* 1渲染父链路*/}
     {ancestors.map((tweet) => (
       <TweetCard
         key={tweet.id}
