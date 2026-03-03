@@ -26,7 +26,6 @@
 .textarea {
   width: 100%;
   margin-top: 12px;
-  padding: 10px;
   resize: none;
   outline: none;
 }
@@ -36,6 +35,16 @@
   gap: 12px;
   margin-top: 12px;
   grid-template-columns: auto 1fr;
+}
+
+.replyingTo {
+  display: flex;
+  flex-direction: row;
+} 
+
+.name {
+  font-weight: bold;
+  margin-right: 8px;
 }
 
 .meta {
@@ -64,10 +73,38 @@
   position: absolute;
   left: 30%;
   top: 2.2em;           
-  bottom: -1.8em;         
+  bottom: -0.6em;         
   width: 2px;
   background: #e1e8ed;
 }
 
+.replyerInfo {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+  grid-template-columns: auto 1fr;
+}
 
+.replyerAvatarWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.replyerIcon {
+  font-size: 2em;
+  border-radius: 50%;
+  margin-right: 0.6em;
+  color: #234C6A; 
+}
+
+.replyButton {
+  background-color: #1da1f2;
+  border: none;
+  color: white;
+  padding: 0.4em 1em;
+  font-size: 1em;
+  border-radius: 20px;
+  cursor: pointer;
+}
 

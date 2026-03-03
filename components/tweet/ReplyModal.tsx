@@ -38,7 +38,7 @@ export default function ReplyModal({
         onClick={(e) => e.stopPropagation()}
       >
         <header className={styles.header}>
-          <h3>Reply</h3>
+          <h3>Replying to</h3>
           <button type="button" onClick={onClose}>✕</button>
         </header>
 
@@ -57,24 +57,43 @@ export default function ReplyModal({
           </div>
           
           <div className={styles.tweetContent}>
-            <div className={styles.meta}>@{tweetAuthor.username}</div>
+            <div className={styles.replyingTo}>
+              <div className={styles.name}>{tweetAuthor.displayName}</div>
+              <div className={styles.meta}>@{tweetAuthor.username}</div>
+            </div>
             <div className={styles.text}>{tweetText}</div>
           </div>
           
         </div>
 
-        <textarea
-          className={styles.textarea}
-          ref={textareaRef}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Post your reply"
-          rows={4}
-        />
+        <div className={styles.replyerInfo}>
+          <div className={styles.replyerAvatarWrapper}>
+            {tweetAuthor.avatarUrl ? (
+              <Image 
+                src={tweetAuthor.avatarUrl} 
+                alt="Profile Avatar"
+                width={100} 
+                height={100} 
+                className={styles.replyerIcon} />
+              ) :(
+                <CgProfile className={styles.replyerIcon} title='Profile Icon' /> 
+            )}
+          </div>  
+          
+          <textarea
+            className={styles.textarea}
+            ref={textareaRef}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Post your reply"
+            rows={4}
+          />
+        </div> 
+        
 
         <footer className={styles.actions}>
-          <button type="button" onClick={onClose}>Cancel</button>
           <button
+            className={styles.replyButton}
             type="button"
             disabled={!text.trim()}
             onClick={() => {
