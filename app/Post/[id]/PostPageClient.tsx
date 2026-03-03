@@ -67,8 +67,12 @@ export default function PostPageClient({ id }: { id: string }) {
       }
     />
 
-    <InlineReply parentId={main.id} onSubmit={(parentId, text) =>
-        replyToTweet(parentId, text, currentUser)}></InlineReply>
+    <InlineReply 
+      parentId={main.id} 
+      replyer={currentUser}
+      onSubmit={(parentId, text) =>
+        replyToTweet(parentId, text, currentUser)}
+      ></InlineReply>
 
     {/* 3replies */}
     {replies.map((tweet) => (
