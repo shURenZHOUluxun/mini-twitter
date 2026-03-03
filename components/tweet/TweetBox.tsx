@@ -82,14 +82,14 @@ export default function  TweetBox({
         )}
         <div className={styles.clickableArea}>
           <ul className={styles.actionList}>
-            <li className={styles.actionItem}>
+            <li className={`${styles.actionItem} `}>
               {/* 点图标打开 file input */}
               <button
                 type="button"
-                className={styles.icon}
+                className={styles.iconButton}
                 onClick={() => fileInputRef.current?.click()}
               >
-                <FaImage title="image" />
+                <FaImage className={styles.icon} title="image" />
               </button>
 
               <input
