@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <TweetBox
         parentId="" // 主贴不需要 parentId，但为了复用组件给个空字符串
-        onSubmit={(_, text) => createTweet(text, currentUser)} // 发主贴
+        onSubmit={(_, payload) => createTweet(payload, currentUser)} // 发主贴
       />
       <FeedTweet />
     </>

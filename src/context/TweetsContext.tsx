@@ -9,7 +9,7 @@ type TweetsCtx = {
   tweets: Tweet[];
   toggleLike: (tweetId: string) => void;
   replyToTweet: (parentId: string, replyText: string, currentUser: User) => void;
-  createTweet: (text: string, currentUser: User) => void;
+  createTweet: (payload: { text: string; media: { type: "image"; url: string }[] }, currentUser: User) => void;
 };
 
 const TweetsContext = createContext<TweetsCtx | null>(null);
@@ -68,7 +68,9 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-    const createTweet = (text: string, currentUser: User) => {
+    const createTweet = (
+      payload: { text: string; media: { type: "image"; url: string }[] }, 
+      currentUser: User) => {
         const newTweet: Tweet = {
             id: crypto.randomUUID(),
             parentId: null, // 主贴没有 parentId
@@ -78,8 +80,11 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
             displayName: currentUser.displayName,
             avatarUrl: currentUser.avatarUrl,
             },
-            content: { text },
             createdAt: new Date().toISOString(),
+            content: {
+              text: payload.text,
+              media: payload.media, 
+            },
             stats: { replyCount: 0, retweetCount: 0, likeCount: 0 },
             viewerState: { liked: false, retweeted: false },
             // 注意：主贴没有 parentId
