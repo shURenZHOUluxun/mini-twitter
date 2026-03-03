@@ -1,4 +1,5 @@
 .header {
+    display: flex;
     width: fit-content;
 }
 
@@ -15,7 +16,7 @@
     color: #234C6A;
     /* color: #456882; */
     /* width: 20vw; */
-    height: 100vh;
+    min-height: 100vh;
     container: sidebar / inline-size;
     
 }
