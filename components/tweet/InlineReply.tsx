@@ -34,7 +34,7 @@ export default function InlineReply({
         </div>
         <textarea
           className={styles.textarea}
-          placeholder="Write a reply..."
+          placeholder="Post your reply..."
           value={text}
           onChange={(e) => setText(e.target.value)}
           style={{ width: "100%", resize: "none" }}
