@@ -5,15 +5,18 @@ import styles from "@/styles/ReplyModal.module.css";
 import { User } from "@/src/types/user";
 import { CgProfile } from "react-icons/cg";
 import Image from "next/image";
+import { formatTime } from "@/src/utils/formatTime";
 
 export default function ReplyModal({
   tweetAuthor,
   tweetText,
+  tweetCreatedAt,
   onClose,
   onSubmit,
 }: {
   tweetAuthor: User;     
   tweetText: string;       // 原 tweet 内容
+  tweetCreatedAt: string; // 原 tweet 创建时间（如 "3h"）
   onClose: () => void;
   onSubmit: (replyText: string) => void;
 }) {
@@ -60,6 +63,7 @@ export default function ReplyModal({
             <div className={styles.replyingTo}>
               <div className={styles.name}>{tweetAuthor.displayName}</div>
               <div className={styles.meta}>@{tweetAuthor.username}</div>
+              <div className={styles.createdAt}>· {formatTime(tweetCreatedAt)}</div> 
             </div>
             <div className={styles.text}>{tweetText}</div>
           </div>

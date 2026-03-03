@@ -6,7 +6,7 @@ import Image from "next/image";
 import ReplyModal from "./ReplyModal";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { formatTime } from "@/src/utils/formatTime";
 import type { Tweet } from "@/src/types/tweet";
 
 export default function TweetCard({ 
@@ -49,7 +49,7 @@ export default function TweetCard({
               <span className={styles.name}>{tweet.author.displayName}</span>
               <span className={styles.username}>@{tweet.author.username}</span>
               <span className={styles.dot}>·</span>
-              <span className={styles.time}>{new Date(tweet.createdAt).toLocaleString()}</span>
+              <span className={styles.time}>{formatTime(tweet.createdAt)}</span>
             </div>
             <p className={styles.tweetText}>{tweet.content.text}</p>
 
@@ -100,6 +100,7 @@ export default function TweetCard({
           <ReplyModal
             tweetAuthor={tweet.author}
             tweetText={tweet.content.text}
+            tweetCreatedAt={tweet.createdAt}
             onClose={() => setOpenReply(false)}
             onSubmit={(replyText) => onReply(tweet.id, replyText)}
           />
