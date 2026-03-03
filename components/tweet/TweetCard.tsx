@@ -98,7 +98,7 @@ export default function TweetCard({
         </div>
         {openReply && (
           <ReplyModal
-            tweetAuthor={`@${tweet.author.username}`}
+            tweetAuthor={tweet.author}
             tweetText={tweet.content.text}
             onClose={() => setOpenReply(false)}
             onSubmit={(replyText) => onReply(tweet.id, replyText)}

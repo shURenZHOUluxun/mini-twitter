@@ -28,4 +28,46 @@
   margin-top: 12px;
   padding: 10px;
   resize: none;
+  outline: none;
 }
+
+.tweetPreview {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+  grid-template-columns: auto 1fr;
+}
+
+.meta {
+  color: gray;
+} 
+
+.text{
+  margin-top: 4px;
+}
+
+.avatarWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.profileIcon {
+  font-size: 2em;
+  border-radius: 50%;
+  margin-right: 0.6em;
+  color: #234C6A;
+}
+
+.avatarWrapper::after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  top: 2.2em;           
+  bottom: -1.8em;         
+  width: 2px;
+  background: #e1e8ed;
+}
+
+
+

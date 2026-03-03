@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/ReplyModal.module.css";
+import { User } from "@/src/types/user";
+import { CgProfile } from "react-icons/cg";
+import Image from "next/image";
 
 export default function ReplyModal({
   tweetAuthor,
@@ -9,7 +12,7 @@ export default function ReplyModal({
   onClose,
   onSubmit,
 }: {
-  tweetAuthor: string;     // "@username"
+  tweetAuthor: User;     
   tweetText: string;       // 原 tweet 内容
   onClose: () => void;
   onSubmit: (replyText: string) => void;
@@ -25,7 +28,7 @@ export default function ReplyModal({
     <div
       className={styles.overlay}
       onMouseDown={(e) => {
-        // ✅ 只点到背景才关闭（避免拖动/点击内部误触）
+        // 只点到背景才关闭（避免拖动/点击内部误触）
         if (e.target === e.currentTarget) onClose();
       }}
     >
@@ -40,11 +43,28 @@ export default function ReplyModal({
         </header>
 
         <div className={styles.tweetPreview}>
-          <div className={styles.meta}>{tweetAuthor}</div>
-          <div className={styles.text}>{tweetText}</div>
+          <div className={styles.avatarWrapper}>
+            {tweetAuthor.avatarUrl ? (
+              <Image 
+                src={tweetAuthor.avatarUrl} 
+                alt="Profile Avatar"
+                width={100} 
+                height={100} 
+                className={styles.profileIcon} />
+            ) :(
+              <CgProfile className={styles.profileIcon} title='Profile Icon' /> 
+            )}
+          </div>
+          
+          <div className={styles.tweetContent}>
+            <div className={styles.meta}>@{tweetAuthor.username}</div>
+            <div className={styles.text}>{tweetText}</div>
+          </div>
+          
         </div>
 
         <textarea
+          className={styles.textarea}
           ref={textareaRef}
           value={text}
           onChange={(e) => setText(e.target.value)}
