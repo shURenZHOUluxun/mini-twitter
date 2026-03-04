@@ -66,30 +66,6 @@ Users can reply directly within a thread without opening a modal.
 - **Vercel**
 
 ---
-## Project Structure
-```
-src
-├── app
-│ ├── page.tsx
-│ └── post/[id]/page.tsx
-│
-├── components
-│ └── tweet
-│ ├── TweetCard.tsx
-│ ├── TweetBox.tsx
-│ └── FeedTweet.tsx
-│
-├── context
-│ └── TweetsContext.tsx
-│
-├── data
-│ ├── mockTweets.ts
-│ └── mockCurrentUser.ts
-│
-├── utils
-│ └── formatTime.ts
-```
-
 # Key Design Decisions
 
 ## Client-side State
