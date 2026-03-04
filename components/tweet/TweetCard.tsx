@@ -69,7 +69,6 @@ export default function TweetCard({
                 )}
               </div>
             )}
-            {/* <Image src="/uoft_grass.webp" alt="Tweet Image" width={500} height={300} className={styles.tweetImage} /> */}
             <ul className={styles.tweetActions} onClick={(e) => e.stopPropagation()} // 阻止事件冒泡，避免触发父元素的 onClick 导航
               onKeyDown={(e) => e.stopPropagation()} // 同上，阻止键盘事件冒泡
             >

@@ -42,8 +42,10 @@
 }
 
 .tweetImage {
-  max-width: 500px;
-  border-radius: 16px;
+  width: auto;
+  max-width: 400px;
+  height: auto;
+  border-radius: 25px;
   margin-top: 0.5em;
   object-fit: contain;
 }
