@@ -4,19 +4,21 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 import { mockTweets } from "@/src/data/mockTweets";
 import type { Tweet } from "@/src/types/tweet";
 import type { User } from "@/src/types/user";
+import { mockCurrentUser } from "@/src/data/mockCurrentUser";
 
 type TweetsCtx = {
   tweets: Tweet[];
+  currentUser: User;
   toggleLike: (tweetId: string) => void;
-  replyToTweet: (parentId: string, replyText: string, currentUser: User) => void;
-  createTweet: (payload: { text: string; media: { type: "image"; url: string }[] }, currentUser: User) => void;
+  replyToTweet: (parentId: string, replyText: string) => void;
+  createTweet: (payload: { text: string; media: { type: "image"; url: string }[] }) => void;
 };
 
 const TweetsContext = createContext<TweetsCtx | null>(null);
 
 export function TweetsProvider({ children }: { children: React.ReactNode }) {
   const [tweets, setTweets] = useState<Tweet[]>(mockTweets);
-
+  const currentUser = mockCurrentUser;
   const toggleLike = (tweetId: string) => {
     setTweets((prev) =>
       prev.map((t) => {
@@ -41,7 +43,7 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  const replyToTweet = (parentId: string, replyText: string, currentUser: User) => {
+  const replyToTweet = (parentId: string, replyText: string) => {
     const newReply: Tweet = {
       id: crypto.randomUUID(),
       parentId,
@@ -70,7 +72,7 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
 
     const createTweet = (
       payload: { text: string; media: { type: "image"; url: string }[] }, 
-      currentUser: User) => {
+      ) => {
         const newTweet: Tweet = {
             id: crypto.randomUUID(),
             parentId: null, // 主贴没有 parentId
@@ -93,7 +95,7 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
         setTweets((prev) => [newTweet, ...prev]); // 放到最上面
     };
 
-  const value = useMemo(() => ({ tweets, toggleLike, replyToTweet, createTweet }), [tweets]);
+  const value = useMemo(() => ({ tweets, currentUser, toggleLike, replyToTweet, createTweet }), [tweets]);
 
   return <TweetsContext.Provider value={value}>{children}</TweetsContext.Provider>;
 }

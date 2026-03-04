@@ -25,14 +25,7 @@ function buildAncestorChain(all: Tweet[], start: Tweet) {
 
 export default function PostPageClient({ id }: { id: string }) {
   const { tweets, toggleLike, replyToTweet } = useTweets();
-
-  const currentUser: User = {
-    id: "u2",
-    username: "current_user",
-    displayName: "Current User",
-    avatarUrl: "",
-  };
-
+  const currentUser = useTweets().currentUser;
   const main = tweets.find((t) => t.id === id);
   if (!main) return <div>Tweet not found</div>;
   const ancestors = buildAncestorChain(tweets, main);
@@ -51,7 +44,7 @@ export default function PostPageClient({ id }: { id: string }) {
         showThreadLine={true} // must connect with all ancestors
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
-          replyToTweet(parentId, text, currentUser)
+          replyToTweet(parentId, text)
         }
       />
     ))}
@@ -63,7 +56,7 @@ export default function PostPageClient({ id }: { id: string }) {
       showThreadLine={false} // 主贴上不显示连接线，只有父链路才显示
       onToggleLike={() => toggleLike(main.id)}
       onReply={(parentId, text) =>
-        replyToTweet(parentId, text, currentUser)
+        replyToTweet(parentId, text)
       }
     />
 
@@ -71,7 +64,7 @@ export default function PostPageClient({ id }: { id: string }) {
       parentId={main.id} 
       replyer={currentUser}
       onSubmit={(parentId, text) =>
-        replyToTweet(parentId, text, currentUser)}
+        replyToTweet(parentId, text)}
       ></InlineReply>
 
     {/* 3replies */}
@@ -82,7 +75,7 @@ export default function PostPageClient({ id }: { id: string }) {
         showThreadLine={false} // replys don't connect with each other
         onToggleLike={() => toggleLike(tweet.id)}
         onReply={(parentId, text) =>
-          replyToTweet(parentId, text, currentUser)
+          replyToTweet(parentId, text)
         }
       />
     ))}

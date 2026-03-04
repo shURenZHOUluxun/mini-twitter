@@ -7,13 +7,6 @@ import { useTweets } from "@/src/context/TweetsContext";
 export default function Feed() {
   const { tweets, toggleLike, replyToTweet } = useTweets();
 
-  const currentUser: User = {
-    id: "u2",
-    username: "current_user",
-    displayName: "Current User",
-    avatarUrl: "",
-  };
-
   return (
     <section>
       {tweets
@@ -23,7 +16,7 @@ export default function Feed() {
             key={t.id}
             tweet={t}
             onToggleLike={() => toggleLike(t.id)}
-            onReply={(parentId, text) => replyToTweet(parentId, text, currentUser)}
+            onReply={(parentId, text) => replyToTweet(parentId, text)}
           />
         ))}
     </section>
