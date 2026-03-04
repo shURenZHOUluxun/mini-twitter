@@ -2,7 +2,6 @@
 
 import TweetCard from "@/components/tweet/TweetCard";
 import { useTweets } from "@/src/context/TweetsContext";
-import type { User } from "@/src/types/user";
 import type { Tweet } from "@/src/types/tweet";
 import InlineReply from "@/components/tweet/InlineReply";
 

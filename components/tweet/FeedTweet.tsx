@@ -1,7 +1,6 @@
 "use client";
 
 import TweetCard from "@/components/tweet/TweetCard";
-import type { User } from "@/src/types/user";
 import { useTweets } from "@/src/context/TweetsContext";
 
 export default function Feed() {

@@ -70,32 +70,38 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-    const createTweet = (
-      payload: { text: string; media: { type: "image"; url: string }[] }, 
-      ) => {
-        const newTweet: Tweet = {
-            id: crypto.randomUUID(),
-            parentId: null, // 主贴没有 parentId
-            author: {
-            id: currentUser.id,
-            username: currentUser.username,
-            displayName: currentUser.displayName,
-            avatarUrl: currentUser.avatarUrl,
-            },
-            createdAt: new Date().toISOString(),
-            content: {
-              text: payload.text,
-              media: payload.media, 
-            },
-            stats: { replyCount: 0, retweetCount: 0, likeCount: 0 },
-            viewerState: { liked: false, retweeted: false },
-            // 注意：主贴没有 parentId
-        };
+  const createTweet = (
+    payload: { text: string; media: { type: "image"; url: string }[] }, 
+    ) => {
+      const newTweet: Tweet = {
+          id: crypto.randomUUID(),
+          parentId: null, // 主贴没有 parentId
+          author: {
+          id: currentUser.id,
+          username: currentUser.username,
+          displayName: currentUser.displayName,
+          avatarUrl: currentUser.avatarUrl,
+          },
+          createdAt: new Date().toISOString(),
+          content: {
+            text: payload.text,
+            media: payload.media, 
+          },
+          stats: { replyCount: 0, retweetCount: 0, likeCount: 0 },
+          viewerState: { liked: false, retweeted: false },
+          // 注意：主贴没有 parentId
+      };
 
-        setTweets((prev) => [newTweet, ...prev]); // 放到最上面
-    };
+      setTweets((prev) => [newTweet, ...prev]); // 放到最上面
+  };
 
-  const value = useMemo(() => ({ tweets, currentUser, toggleLike, replyToTweet, createTweet }), [tweets]);
+  const value = useMemo(() => ({ 
+    tweets, 
+    currentUser, 
+    toggleLike, 
+    replyToTweet, 
+    createTweet 
+  }), [tweets]);
 
   return <TweetsContext.Provider value={value}>{children}</TweetsContext.Provider>;
 }

@@ -3,8 +3,6 @@
 import FeedTweet from "@/components/tweet/FeedTweet";
 import TweetBox from "@/components/tweet/TweetBox";
 import { useTweets } from "@/src/context/TweetsContext";
-import type { User } from "@/src/types/user";
-
 export default function Home() {
   const { createTweet } = useTweets();
 
