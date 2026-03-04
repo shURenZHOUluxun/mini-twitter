@@ -98,7 +98,10 @@ export default function  TweetBox({
                 accept="image/*"
                 multiple
                 hidden
-                onChange={(e) => addImages(e.target.files)}
+                onChange={(e) => {
+                  addImages(e.target.files);
+                  e.currentTarget.value = ""; // 允许上传同一张图多次，改变文件输入的值以触发onChange
+                }}
               />
             </li>
 
