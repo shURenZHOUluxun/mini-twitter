@@ -2,21 +2,35 @@
 import { CgProfile } from "react-icons/cg";
 import styles from '../../styles/Profile.module.css';
 import Image from 'next/image';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditProfileModal from "./EditProfileModal";
+import { useTweets } from "@/src/context/TweetsContext";
 
 export default function Profile() {
+  const { currentUser } = useTweets();
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState('username');
   const [name, setName] = useState('User Name');
   const [bio, setBio] = useState('This is the user bio.');
   const [avatarUrl, setAvatarUrl] = useState('');
 
+  useEffect(() => {
+    if (!currentUser) return;
+
+    setUsername(currentUser.username);
+    setName(currentUser.displayName);
+    setAvatarUrl(currentUser.avatarUrl ?? '');
+  }, [currentUser]);
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.profileContainer}>
         <div className={styles.imageWrapper}>
           <Image 
-              src="/uoft_grass.webp" 
+              src="/uoft_grass.webp"
               alt={styles.imageBanner}
               onError={(e) => {
                 e.currentTarget.style.display = "none";
