@@ -2,10 +2,11 @@
 
 A lightweight Twitter-style social feed built with **Next.js and React**, supporting threaded conversations, image posts, and inline replies.
 
+### Demo
+
+![Mini Twitter Demo](demo/mini_twitter_demo.gif)
 🌐 **Live Demo**  
 https://mini-twitter-umber.vercel.app/
-
----
 
 # Overview
 
