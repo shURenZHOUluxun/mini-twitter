@@ -61,7 +61,7 @@ export function TweetsProvider({ children }: { children: React.ReactNode }) {
   };
 
   const replyToTweet = (parentId: string, replyText: string) => {
-    if (!currentUser) return; // ✅
+    if (!currentUser) return; 
 
     const newReply: Tweet = {
       id: crypto.randomUUID(),
