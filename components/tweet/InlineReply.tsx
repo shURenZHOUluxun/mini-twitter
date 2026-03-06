@@ -12,7 +12,7 @@ export default function InlineReply({
   onSubmit,
 }: {
   parentId: string;
-  replyer: User;
+  replyer: User | null;
   onSubmit: (parentId: string, text: string) => void;
 }) {
   const [text, setText] = useState("");
@@ -21,7 +21,7 @@ export default function InlineReply({
     <div className={styles.inlineReply}>
       <div className={styles.replyerWrapper}>
         <div className={styles.replyerAvatarWrapper}>
-          {replyer.avatarUrl ? (
+          {replyer?.avatarUrl ? (
             <Image 
               src={replyer.avatarUrl} 
               alt="Profile Avatar"
