@@ -41,6 +41,7 @@ export async function GET() {
 }
 
 // POST /api/tweets  发推（MVP：authorId 从前端传；以后接 auth 再从 session 取）
+// no authorid to prevent abuse, but in real app we will get it from session after auth
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
 
